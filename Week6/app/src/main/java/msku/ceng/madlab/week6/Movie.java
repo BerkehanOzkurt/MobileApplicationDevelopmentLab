@@ -1,9 +1,15 @@
 package msku.ceng.madlab.week6;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Parcelable, Serializable {
     private String name;
     private String director;
     private int year;
@@ -17,6 +23,26 @@ public class Movie {
         this.stars = stars;
         this.description = description;
     }
+
+    protected Movie(Parcel in) {
+        name = in.readString();
+        director = in.readString();
+        year = in.readInt();
+        stars = in.createStringArrayList();
+        description = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -56,5 +82,19 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(director);
+        parcel.writeInt(year);
+        parcel.writeStringList(stars);
+        parcel.writeString(description);
     }
 }
