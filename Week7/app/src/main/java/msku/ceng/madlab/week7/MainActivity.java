@@ -7,30 +7,26 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 public class MainActivity extends Activity implements BoardView{
-    BoardPresenter presenter;
+    BoardPresenter boardPresenter;
     TableLayout boardView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        presenter = new BoardPresenter(this);
+
+        boardPresenter = new BoardPresenter(this);
         boardView = findViewById(R.id.board);
-//register button listeners
+
         for (byte row=0; row<3; row++){
             TableRow tableRow = (TableRow)boardView.getChildAt(row);
             for (byte col=0; col<3; col++){
                 Button button = (Button)tableRow.getChildAt(col);
-                BoardPresenter.CellClickListener clickListener = new
-                        BoardPresenter.CellClickListener(presenter,row,col);
+                BoardPresenter.CellClickListener clickListener = new BoardPresenter.CellClickListener(boardPresenter,row,col);
                 button.setOnClickListener(clickListener);
-                presenter.addCellClickListener(clickListener);
+                boardPresenter.addCellClickListener(clickListener);
             }
         }
     }
@@ -77,6 +73,6 @@ public class MainActivity extends Activity implements BoardView{
 
     @Override
     public void invalidPlay(byte row, byte col) {
-
+        Toast.makeText(this, "Invalid Move", Toast.LENGTH_LONG).show();
     }
 }
