@@ -9,12 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="https://upload.wikimedia.org/wikipedia/commons/e/ed/016vallesmarineris_r
-educed0.5.jpg" />
-
+        android:text="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/016vallesmarineris.jpg/1280px-016vallesmarineris.jpg" />
     <Button
         android:id="@+id/btnDownload"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
@@ -23,5 +20,5 @@ educed0.5.jpg" />
         android:id="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 </LinearLayout>
