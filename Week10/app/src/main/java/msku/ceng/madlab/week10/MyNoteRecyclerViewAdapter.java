@@ -37,6 +37,7 @@ public class MyNoteRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        position = holder.getAdapterPosition();
         holder.mItem = notes.get(position);
         holder.mHeaderView.setText(notes.get(position).getHeader());
         holder.mDateView.setText((new SimpleDateFormat("yyyy-MM-dd")).format(notes.get(position).getDate()));

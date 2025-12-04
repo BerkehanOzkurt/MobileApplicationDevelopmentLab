@@ -32,11 +32,10 @@ public class NoteFragment extends Fragment {
     }
 
     // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static NoteFragment newInstance(ArrayList<Note> notes) {
         NoteFragment fragment = new NoteFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_NOTES, "notes");
+        args.putSerializable(ARG_NOTES, notes);
         fragment.setArguments(args);
         return fragment;
     }
